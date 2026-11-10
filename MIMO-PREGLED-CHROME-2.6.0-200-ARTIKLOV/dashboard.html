@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mimo Pregled — moj katalog</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M5 20V8l9 10 9-10v12"/></svg></div><div><div class="brand-title">mimo<span>pregled</span></div><div class="brand-caption">OSEBNI KATALOG</div></div></div>
+      <div class="side-label">DELOVNA POVRŠINA</div>
+      <nav aria-label="Navigacija" class="nav">
+        <button type="button" class="nav-item active" data-view="all"><span class="nav-icon">▦</span> Vsi izdelki <span class="nav-count" id="navCount">0</span></button>
+        <button type="button" class="nav-item" data-view="sale"><span class="nav-icon">◈</span> Znižani izdelki</button>
+        <button type="button" class="nav-item" data-view="missing"><span class="nav-icon">◌</span> Brez podatkov</button>
+      </nav>
+      <div class="side-label side-label-second">ORODJA</div>
+      <nav class="nav" aria-label="Orodja">
+        <button type="button" class="nav-item" id="sideImport"><span class="nav-icon">＋</span> Dodaj artikle</button>
+        <button type="button" class="nav-item" id="sideExport"><span class="nav-icon">⇩</span> Izvozi CSV</button>
+        <button type="button" class="nav-item" id="sidePrint"><span class="nav-icon">▤</span> Natisni seznam</button>
+      </nav>
+      <div class="sidebar-bottom"><span class="sidebar-dot"></span><span>Neodvisna razširitev<br>Podatki shranjeni v Chromu</span></div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar"><div class="breadcrumbs">MOJA ZBIRKA <span>/</span> <strong>Pregled izdelkov</strong></div><div class="topbar-right"><span class="local-badge">● Lokalno shranjeno</span><div class="user-monogram" aria-hidden="true">M</div></div></header>
+      <main class="main">
+        <div class="hero"><div><div class="eyebrow"><span class="eyebrow-line"></span> ENOSTAVEN PREGLED CEN</div><h1>Vsi tvoji izdelki.<br><em>Na enem mestu.</em></h1><p>Poišči do 200 artiklov naenkrat z omejenim vzporednim iskanjem. Preveri fotografije, cene, popuste in kode za popust.</p><div class="hero-buttons"><button id="importBtn" class="btn btn-primary"><span>＋</span> Dodaj izdelke</button><button id="refreshBtn" class="btn btn-hero-outline"><span>↻</span> Osveži cene</button></div></div><div class="hero-art" aria-hidden="true"><span class="orb orb-one"></span><span class="orb orb-two"></span><div class="mini-card"><div class="mini-logo">▤</div><div class="mini-lines"><span></span><span></span><span></span></div><div class="mini-price">€</div></div><div class="hero-tag">↘ <span>Popusti</span></div></div></div>
+        <section class="stats" aria-label="Statistika kataloga"><div class="stat"><div class="stat-icon orange">▧</div><div><div class="stat-name">Vsi artikli</div><div class="stat-value" id="statAll">0</div></div></div><div class="stat"><div class="stat-icon pink">↘</div><div><div class="stat-name">Znižanih</div><div class="stat-value" id="statSale">0</div></div></div><div class="stat"><div class="stat-icon blue">€</div><div><div class="stat-name">Največji popust</div><div class="stat-value" id="statBest">—</div></div></div><div class="stat"><div class="stat-icon green">✓</div><div><div class="stat-name">S podatki</div><div class="stat-value" id="statReady">0</div></div></div></section>
+        <section class="catalog" aria-labelledby="catalogHeading"><div class="catalog-heading"><div><div class="small-kicker">TVOJA ZBIRKA</div><h2 id="catalogHeading">Pregled artiklov <span id="visibleCount">(0)</span></h2></div><div id="progressText" role="status" aria-live="polite" class="progress-text"></div><button id="stopBtn" type="button" class="stop-btn" hidden>■ Ustavi iskanje</button></div>
+          <div class="toolbar"><label class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15.5 15.5 5 5"/></svg><input id="searchInput" type="search" autocomplete="off" placeholder="Poišči artikel, znamko ali ID …" aria-label="Iskanje"></label><label class="fast-config" title="Koliko izdelkov naj se preverja hkrati? Več ni vedno hitreje, če Mimovrste omeji zahtevke."><span>⚡ Hitrost</span><select id="workerCount" aria-label="Hkratna iskanja"><option value="2">2 hkrati</option><option value="3" selected>3 hkrati</option><option value="4">4 hkrati</option></select></label><label class="cache-config compact" title="Ponovno uporabi preverjene podatke, stare največ 15 minut. Za najnovejše cene odznači."><input id="cacheRecent" type="checkbox" checked> Pomni 15 min</label><select id="sortSelect" aria-label="Razvrsti izdelke"><option value="added">Najnovejši dodani</option><option value="priceAsc">Cena: od najnižje</option><option value="priceDesc">Cena: od najvišje</option><option value="discount">Največji popust</option><option value="title">Naziv A–Ž</option></select><button id="printBtn" type="button" class="btn btn-print" title="Odpri seznam za tiskanje na A4">▤ Natisni seznam</button><button id="listRefreshBtn" type="button" class="icon-btn" title="Osveži vse" aria-label="Osveži vse">↻</button></div>
+          <div id="itemsGrid" class="items-grid"></div><div id="emptyState" class="empty-state" hidden><div class="empty-icon">▧</div><h3 id="emptyTitle">Tukaj bo tvoj katalog</h3><p id="emptyHint">Prilepi povezave ali ID-je izdelkov z Mimovrste in prikazali se bodo tukaj.</p><button id="emptyImportBtn" class="btn btn-primary">＋ Dodaj prvi izdelek</button></div>
+        </section>
+        <footer>mimo<span>pregled</span> · Neodvisna osebna razširitev · Cene se lahko spremenijo. Pred nakupom jih preveri na Mimovrste.</footer>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal-layer" id="importLayer" hidden><div class="overlay" data-close="import"></div><section class="dialog import-dialog" role="dialog" aria-modal="true" aria-labelledby="importTitle"><button class="close-btn" data-close="import" aria-label="Zapri">×</button><div class="dialog-icon">＋</div><div class="small-kicker">MNOŽIČNI UVOZ</div><h2 id="importTitle">Dodaj svoje artikle</h2><p class="dialog-lead">Prilepi do 200 ID-jev ali povezav (vsak ID v svojo vrstico ali ločen s presledkom). Podpira tudi zapis <code>ID | povezava</code> in več vnosov hkrati.</p><label for="importText" class="form-label">Povezave ali ID-ji izdelkov</label><textarea id="importText" rows="8" spellcheck="false" placeholder="https://www.mimovrste.com/kategorija/izdelek-12345678&#10;100171104854&#10;123456 | https://www.mimovrste.com/kategorija/izdelek-123456"></textarea><p class="cache-hint">Če so podatki že osveženi v zadnjih 15 minutah, lahko uporabiš predpomnilnik (potrditveno polje »Pomni 15 min« nad katalogom). Za popolnoma sveže cene ga odznači.</p><p class="hint">Najprej preizkusim Mimovrste /iskanje?s=ID in /iskanje?q=ID, nato neposredno pot z ID-jem; javni iskalniki so le rezerva. Če strani ID ni mogoče potrditi, ne prikažem ugibanih cen ali fotografij. Največ 200 vnosov naenkrat.</p><div id="importFeedback" class="feedback" role="status"></div><div class="dialog-actions"><button class="btn btn-secondary" data-close="import">Prekliči</button><button class="btn btn-primary" id="submitImport">＋ Dodaj in pridobi podatke</button></div></section></div>
+
+  <div class="modal-layer" id="detailsLayer" hidden><div class="overlay" data-close="details"></div><section class="dialog details-dialog" role="dialog" aria-modal="true" aria-labelledby="detailsTitle"><button class="close-btn" data-close="details" aria-label="Zapri">×</button><div class="details-head"><div class="details-visual"><img id="detailsImage" alt="" hidden><span id="detailsPlaceholder">▧</span></div><div><div class="small-kicker" id="detailsBrand">PODROBNOSTI</div><h2 id="detailsTitle"></h2><p id="detailsId" class="muted"></p><div id="detailsPrice" class="details-price"></div></div></div><div class="detail-tabs"><button type="button" data-tab="spec" class="detail-tab active">Tehnične lastnosti</button><button type="button" data-tab="description" class="detail-tab">Opis</button><button type="button" data-tab="photos" class="detail-tab">Fotografije</button><button type="button" data-tab="edit" class="detail-tab">Ročni popravek</button></div><div id="detailsBody" class="details-body"></div><div class="dialog-actions"><button type="button" class="btn btn-secondary" data-close="details">Zapri</button><a id="detailsLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary" href="#">Odpri na Mimovrste ↗</a></div></section></div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="parser.js"></script>
+  <script src="discovery.js"></script>
+  <script src="dashboard.js"></script>
+</body></html>

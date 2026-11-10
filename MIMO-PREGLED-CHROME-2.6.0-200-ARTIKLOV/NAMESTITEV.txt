@@ -1,0 +1,13 @@
+MIMO PREGLED 2.6 – GOOGLE CHROME (DO 200 ARTIKLOV)
+
+1. ZIP razširi v stalno mapo na svojem računalniku.
+2. V Chrome vpiši chrome://extensions
+3. Vklopi Način za razvijalce / Developer mode.
+4. Klikni Naloži razširjeno / Load unpacked.
+5. Izberi MAPO, v kateri je manifest.json.
+6. Z ikono sestavljanke pripni Mimo Pregled in odpri katalog.
+
+Pomembno: ZIP se ne namešča neposredno. Razširitvena mapa mora ostati
+na istem mestu. Izdelki se shranijo lokalno v Chromu in niso samodejno
+preneseni iz Firefoxa. Samodejni zajem cen in slik je odvisen od javno
+razpoložljivih podatkov Mimovrste in ni uradna integracija.

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mimo Pregled – seznam za nalepke</title>
+  <link rel="stylesheet" href="print.css">
+</head>
+<body>
+  <div class="screen-panel">
+    <div class="brand"><span class="brand-m">M</span><span>mimo<b>pregled</b><small>Seznam za menjavo cen</small></span></div>
+    <div class="screen-actions">
+      <label>Izdelki <select id="scopeSelect">
+        <option value="discounts">Znižani in s kodo</option>
+        <option value="all">Vsi izdelki</option>
+        <option value="sale">S prejšnjo ceno</option>
+        <option value="code">S kodo / ceno s kodo</option>
+      </select></label>
+      <label>Postavitev <select id="layoutSelect">
+        <option value="list">Pregleden seznam</option>
+        <option value="compact">Varčno · 2 stolpca</option>
+      </select></label>
+      <button id="printAction" class="print-button" type="button">▤ &nbsp; Natisni / shrani PDF</button>
+      <button id="backAction" class="back-button" type="button">← Katalog</button>
+    </div>
+  </div>
+  <div class="screen-status" id="printStatus" role="status" aria-live="polite">Pripravljam seznam …</div>
+  <main class="paper" id="paper">
+    <header class="paper-head">
+      <div class="paper-top"><div class="paper-brand">MIMO<span>PREGLED</span><small>DELOVNI IZPIS · MIMOVRSTE</small></div><div class="date-field">Datum izpisa<br><strong id="printDate"></strong></div></div>
+      <div class="heading-row"><div><div class="mini-label">SEZNAM ZA MENJAVO CENOVNIH NALEPK</div><h1 id="printHeading">Pregled akcijskih cen</h1><p>Fotografije, ID-ji artiklov, cene in promocijske kode na enem mestu.</p></div><div class="count-box"><span>ARTIKLOV NA SEZNAMU</span><strong id="printCount">0</strong></div></div>
+      <div class="legend"><span><i class="legend-check"></i> Označi po zamenjavi nalepke</span><span class="legend-old">Prejšnja cena</span><span class="legend-current">Cena na Mimovrste</span><span class="legend-code">Cena s kodo</span></div>
+    </header>
+    <div id="printItems" class="print-items"></div>
+    <div id="emptyNotice" class="empty" hidden>Za izbrani filter ni artiklov. Spremeni filter na vrhu strani ali dodaj izdelke v katalog.</div>
+    <footer class="paper-footer">Cene in promocije se lahko spremenijo. Pred nameščanjem nalepk preveri veljavne cene in pogoje kod na Mimovrste. Seznam je pripravljen iz lokalno shranjenih podatkov razširitve.</footer>
+  </main>
+  <script src="print-data.js"></script>
+  <script src="print.js"></script>
+</body>
+</html>
